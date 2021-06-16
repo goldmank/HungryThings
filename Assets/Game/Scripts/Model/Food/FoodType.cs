@@ -1,0 +1,30 @@
+namespace Game.Scripts.Model.Food
+{
+    public enum FoodType
+    {
+        Cat,
+        Chick,
+        Cow,
+        Deer,
+        Dino,
+        Dragon,
+        Duck,
+        Fish,
+        Giraffe,
+        Lamb,
+        Penguin,
+        Pig,
+        Pug,
+        Rabbit,
+        Egal,
+        Fox,
+        Frog,
+        Horse,
+        Mouse,
+        Panda,
+        PolarBear,
+        Squwirl,
+        Trex,
+        Unicorn
+    }
+}

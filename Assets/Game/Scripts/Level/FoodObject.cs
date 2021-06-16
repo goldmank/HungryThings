@@ -21,20 +21,27 @@ namespace Game.Scripts
     
         private void Start()
         {
-            //FetchFoodParts();
-        }
-    
-        private void OnStandStill()
-        {
+            FetchFoodParts();
+        
             // Destroy(_mainBody);
             // _mainBody = null;
             // Destroy(_mainCollider);
             // _mainCollider = null;
             //
-            // _parts.gameObject.SetActive(true);
-            // _simple.gameObject.SetActive(false);
-            //
-            // FoodReady?.Invoke(this);
+            // BuildBodyParts();
+        }
+    
+        private void OnStandStill()
+        {
+            Destroy(_mainBody);
+            _mainBody = null;
+            Destroy(_mainCollider);
+            _mainCollider = null;
+        
+            _parts.gameObject.SetActive(true);
+            _simple.gameObject.SetActive(false);
+
+            FoodReady?.Invoke(this);
         }
 
         private void Update()

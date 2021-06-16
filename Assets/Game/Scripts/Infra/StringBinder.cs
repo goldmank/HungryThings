@@ -15,7 +15,7 @@ namespace Game.Scripts.Infra
         {
             _text = GetComponent<TextMeshProUGUI>();
             UpdateText();
-            SimpleEventManager.Get().Subscribe(Events.Ui.StringsUpdated, OnStringUpdated);
+            //SimpleEventManager.Get().Subscribe(Events.Ui.StringsUpdated, OnStringUpdated);
         }
 
         private void OnStringUpdated(EventParams obj)

@@ -3,6 +3,7 @@ using Firebase.Analytics;
 using Game.Scripts.Audio;
 using Game.Scripts.Infra;
 using Game.Scripts.Infra.Ads;
+using Game.Scripts.Model.Eater;
 using Game.Scripts.Model.Food;
 using Game.Scripts.Model.Level;
 using Game.Scripts.Model.Vfx;
@@ -18,11 +19,13 @@ namespace Game.Scripts.Model
         [SerializeField] private LevelCatalog _levelCatalog;
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private VfxCatalog _vfxCatalog;
+        [SerializeField] private EaterCatalog _eaterCatalog;
 
         public WorldCatalog Worlds => _worldCatalog;
         public FoodCatalog Foods => _foodCatalog;
         public LevelCatalog Levels => _levelCatalog;
         public VfxCatalog Vfx => _vfxCatalog;
+        public EaterCatalog Eaters => _eaterCatalog;
         public AudioManager AudioManager => _audioManager;
 
         public Tasker Tasker => _tasker;

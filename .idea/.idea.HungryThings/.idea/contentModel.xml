@@ -104,6 +104,7 @@
               <e p="CameraMover.cs" t="Include" />
               <e p="Cube.cs" t="Include" />
               <e p="Eater.cs" t="Include" />
+              <e p="EaterSpawner.cs" t="Include" />
               <e p="FoodObject.cs" t="Include" />
               <e p="FoodPart.cs" t="Include" />
               <e p="LevelManager.cs" t="Include" />
@@ -114,6 +115,11 @@
             </e>
             <e p="Model" t="Include">
               <e p="CurrencyModel.cs" t="Include" />
+              <e p="Eater" t="Include">
+                <e p="EaterCatalog.cs" t="Include" />
+                <e p="EaterData.cs" t="Include" />
+                <e p="EaterType.cs" t="Include" />
+              </e>
               <e p="Food" t="Include">
                 <e p="FoodCatalog.cs" t="Include" />
                 <e p="FoodData.cs" t="Include" />
@@ -158,6 +164,7 @@
               <e p="ObjectGalleryButton.cs" t="Include" />
               <e p="ObjectsGallery.cs" t="Include" />
               <e p="SettingsScreen.cs" t="Include" />
+              <e p="SpawnButton.cs" t="Include" />
               <e p="StoreScreen.cs" t="Include" />
               <e p="TimeUpPopup.cs" t="Include" />
               <e p="Tutorial.cs" t="Include" />

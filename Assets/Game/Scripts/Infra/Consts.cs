@@ -3,7 +3,7 @@ namespace Game.Scripts.Infra
 {
     public static class Consts
     {
-        public static readonly bool Debug = false;
+        public static readonly bool Debug = true;
         public static readonly bool BlockMultiPop = true;
         public static readonly bool Ads = false;
 

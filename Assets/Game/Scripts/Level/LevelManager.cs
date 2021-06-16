@@ -31,7 +31,7 @@ namespace Game.Scripts.Level
         private FoodObject _food;
         private GameObject _world;
         private bool _autoRotate;
-        
+
         public void Load(int levelIndex)
         {
             Debug.Log("Load: " + levelIndex);
@@ -159,6 +159,9 @@ namespace Game.Scripts.Level
 
             _autoRotate = true;
             EnableInput(_loaded);
+
+            var eaterSpawner = gameObject.AddComponent<EaterSpawner>();
+            eaterSpawner.Init(_objectContainer);
         }
 
         private void OnDestroy()

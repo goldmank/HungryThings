@@ -1,23 +1,29 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Game.Scripts
+namespace Game.Scripts.Level
 {
     public class Eater : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _body;
         [SerializeField] private float _power;
-    
+
+        private Rigidbody _body;
         private Vector3? _target;
         private float _lastTargetSet;
 
         public void Init(float power)
         {
             _power = power;
+            _body = gameObject.AddComponent<Rigidbody>();
+            gameObject.AddComponent<SphereCollider>();
         }
     
         void Update()
         {
+            if (_body == null)
+            {
+                return;
+            }
             if (Math.Abs(_body.velocity.y) > 0.01f)
             {
                 return;
@@ -38,7 +44,7 @@ namespace Game.Scripts
                 }
                 else
                 {
-                    var v = 150;
+                    var v = 100;
                     _body.velocity = new Vector3(d.x * Time.deltaTime * v, 0, d.z * Time.deltaTime * v);
                 }
                 return;

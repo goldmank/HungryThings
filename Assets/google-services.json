@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "745098991976",
+    "firebase_url": "https://hungry-things-default-rtdb.firebaseio.com",
+    "project_id": "hungry-things",
+    "storage_bucket": "hungry-things.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745098991976:android:9011bd10e09fa84e139edd",
+        "android_client_info": {
+          "package_name": "com.yellowtie.hungrythings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745098991976-6dp536scubj1uldsm5c9rmbb1r1g9gji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-YXhvsv7tA1X6wETUuZchHYbA2QnozSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745098991976-6dp536scubj1uldsm5c9rmbb1r1g9gji.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "745098991976-0s6c37k482q569uk8dllugc2apidsgan.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yellowtie.hungrythings"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

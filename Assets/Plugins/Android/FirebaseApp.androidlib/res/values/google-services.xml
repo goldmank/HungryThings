@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="firebase_database_url" translatable="false">https://hungry-things-default-rtdb.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">745098991976</string>
+  <string name="google_storage_bucket" translatable="false">hungry-things.appspot.com</string>
+  <string name="project_id" translatable="false">hungry-things</string>
+  <string name="google_api_key" translatable="false">AIzaSyA-YXhvsv7tA1X6wETUuZchHYbA2QnozSY</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA-YXhvsv7tA1X6wETUuZchHYbA2QnozSY</string>
+  <string name="google_app_id" translatable="false">1:745098991976:android:9011bd10e09fa84e139edd</string>
+  <string name="default_web_client_id" translatable="false">745098991976-6dp536scubj1uldsm5c9rmbb1r1g9gji.apps.googleusercontent.com</string>
+</resources>

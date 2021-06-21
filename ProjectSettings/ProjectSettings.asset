@@ -668,8 +668,10 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    4: gameanalytics_ironsource_enabled
-    7: gameanalytics_ironsource_enabled
+    1: CROSS_PLATFORM_INPUT
+    4: gameanalytics_ironsource_enabled;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: gameanalytics_ironsource_enabled;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    14: MOBILE_INPUT
   platformArchitecture: {}
   scriptingBackend:
     Android: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   Worlds:
   - Type: 0
     Icon: {fileID: 0}
-    Prefab: {fileID: 1582100669405568394, guid: 3aae1b69015e64074aa18c02f8adcd75,
+    Prefab: {fileID: 1071388403132294104, guid: 8797769a8b66e49f3bf176b775701b17,
       type: 3}
     PriceType: 0
     Price: 0

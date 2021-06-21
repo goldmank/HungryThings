@@ -8,7 +8,7 @@ namespace Game.Scripts.Model.World
     {
         public WorldType Type;
         public Sprite Icon;
-        public GameObject Prefab;
+        public Scripts.Level.World Prefab;
         public PriceType PriceType;
         public int Price;
     }

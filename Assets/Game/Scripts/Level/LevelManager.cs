@@ -29,7 +29,7 @@ namespace Game.Scripts.Level
         private bool _loaded;
         private LevelData _levelData;
         private FoodObject _food;
-        private GameObject _world;
+        private World _world;
         private bool _autoRotate;
 
         public void Load(int levelIndex)
@@ -69,7 +69,7 @@ namespace Game.Scripts.Level
             
             _world = Instantiate(worldData.Prefab, _objectContainer);
             
-            _food = Instantiate(objectData.Prefab, new Vector3(0, 2, 0), Quaternion.Euler(0, 0, 0));
+            _food = Instantiate(objectData.Prefab, _world.SpawnPoint, Quaternion.Euler(0, 0, 0));
             _food.transform.parent = _objectContainer;
             _food.FoodReady += (newFood) =>
             {

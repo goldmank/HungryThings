@@ -441,11 +441,7 @@ namespace Game.Scripts
             foreach (var bodyPart in _foodParts)
             {
                 var dVec = bodyPart.transform.position - pos;
-                if (dVec.y > 0.1f)
-                {
-                    continue;
-                }
-                var d = Mathf.Sqrt(dVec.x * dVec.x + dVec.z * dVec.z);
+                var d = Mathf.Sqrt(dVec.x * dVec.x + (10 * dVec.y * dVec.y) + dVec.z * dVec.z);
                 if (d < bestD)
                 {
                     bestD = d;

@@ -6,16 +6,26 @@ namespace Game.Scripts.Level
     public class Eater : MonoBehaviour
     {
         [SerializeField] private float _power;
+        [SerializeField] private Collider _collider;
 
         private Rigidbody _body;
         private Vector3? _target;
         private float _lastTargetSet;
 
+        private void Start()
+        {
+            _collider.enabled = false;
+        }
+        
         public void Init(float power)
         {
             _power = power;
             _body = gameObject.AddComponent<Rigidbody>();
-            gameObject.AddComponent<SphereCollider>();
+            if (null == _collider)
+            {
+                _collider = gameObject.AddComponent<SphereCollider>();    
+            }
+            _collider.enabled = true;
         }
     
         void Update()

@@ -59,7 +59,7 @@ namespace Game.Scripts.Level
             }
             
             // set random hidden object for level
-            _levelData.Food = ModelManager.Get().Foods.GetRandomHiddenObjectType();
+            _levelData.Food = FoodType.Chick;// ModelManager.Get().Foods.GetRandomHiddenObjectType();
             
             var objectData = ModelManager.Get().Foods.GetFood(_levelData.Food);
             if (null == objectData)

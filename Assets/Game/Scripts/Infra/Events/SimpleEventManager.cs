@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using IO.Infra.Scripts.Events;
 
-namespace IO.Infra.Scripts.Events
+namespace Game.Scripts.Infra.Events
 {
     public class SimpleEventManager
     {

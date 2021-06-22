@@ -1,3 +1,4 @@
+using Game.Scripts.Infra.Events;
 using Game.Scripts.Level;
 using IO.Infra.Scripts.Events;
 using UnityEngine;

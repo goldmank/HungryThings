@@ -161,11 +161,11 @@ Material:
     - _BumpScale: 1
     - _CloudHeight: 0
     - _CloudsCat: 1
-    - _CloudsHeight: 0.1
+    - _CloudsHeight: -0.191
     - _CloudsIntensity: 1
     - _CloudsLitbySun: 0
-    - _CloudsRotation: 10
-    - _CloudsRotationSpeed: 1
+    - _CloudsRotation: 222
+    - _CloudsRotationSpeed: 2.87
     - _Contrast: 0.477
     - _Contrsat: 1
     - _Cutoff: 0
@@ -192,8 +192,8 @@ Material:
     - _EnableSunMoonMask: 1
     - _EnableTwinkling: 0
     - _EqHeight: 0.419
-    - _EquatorHeight: 0.228
-    - _EquatorSmoothness: 0.39
+    - _EquatorHeight: 0.263
+    - _EquatorSmoothness: 0.523
     - _Exposure: 0
     - _Fade: 0.463
     - _Float0: 2.7
@@ -220,7 +220,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PatternCat: 1
-    - _PatternContrast: 1.18
+    - _PatternContrast: 0.87
     - _RoatationSpeed: 0.4
     - _Rotation: 0
     - _RotationSpeed: 0.5
@@ -270,12 +270,12 @@ Material:
     - _Color2: {r: 0.059472326, g: 0.25068596, b: 0.8088235, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Eq: {r: 1, g: 0.6769777, b: 0.330882, a: 0}
-    - _EquatorColor: {r: 1, g: 0.3454259, b: 0, a: 0}
+    - _EquatorColor: {r: 0, g: 0.6014981, b: 1, a: 0}
     - _Ground: {r: 0.4779411, g: 0.43111518, b: 0.23545504, a: 0}
-    - _GroundColor: {r: 0.7830189, g: 0.16884933, b: 0.114498034, a: 0}
+    - _GroundColor: {r: 1, g: 0.17260063, b: 0, a: 0}
     - _MoonColor: {r: 1, g: 1, b: 1, a: 1}
     - _Sky: {r: 0.6691177, g: 0.29519898, b: 0.29519898, a: 0}
-    - _SkyColor: {r: 0, g: 0.16586089, b: 1, a: 0}
+    - _SkyColor: {r: 0, g: 0.52086806, b: 1, a: 0}
     - _Skycol: {r: 0.27941146, g: 0.64219046, b: 1, a: 0}
     - _StarsRotationAxis: {r: 0, g: 1, b: 0, a: 0}
     - _SunColor: {r: 1, g: 0.85071, b: 0.66176474, a: 1}

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - food
+  - ant
+  - floor
+  - wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - body
   - foodpart
   - ant
-  - 
+  - wall
   - 
   - 
   - 

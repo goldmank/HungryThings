@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9134296643219875177}
   - component: {fileID: 9134296643219875178}
   m_Layer: 10
-  m_Name: Ant
+  m_Name: SimpleEater
   m_TagString: ant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,4 +92,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32a3dbffad304e178c8dc810bddab85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 0
+  _power: 1
+  _collider: {fileID: 0}

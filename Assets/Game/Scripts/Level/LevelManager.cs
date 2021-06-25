@@ -69,7 +69,7 @@ namespace Game.Scripts.Level
             
             _world = Instantiate(worldData.Prefab, _objectContainer);
             
-            _food = Instantiate(objectData.Prefab, _world.SpawnPoint, Quaternion.Euler(0, 0, 0));
+            _food = Instantiate(objectData.Prefab, _world.SpawnPoint, Quaternion.Euler(0, 0, 30));
             _food.transform.parent = _objectContainer;
             _food.FoodReady += (newFood) =>
             {

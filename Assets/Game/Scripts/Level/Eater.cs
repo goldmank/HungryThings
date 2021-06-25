@@ -11,16 +11,22 @@ namespace Game.Scripts.Level
         private Rigidbody _body;
         private Vector3? _target;
         private float _lastTargetSet;
+        private float _lastEat;
 
         private void Start()
         {
-            _collider.enabled = false;
+            if (null != _collider)
+            {
+                _collider.enabled = false;   
+            }
         }
         
         public void Init(float power)
         {
             _power = power;
             _body = gameObject.AddComponent<Rigidbody>();
+            _body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+                                RigidbodyConstraints.FreezeRotationZ; 
             if (null == _collider)
             {
                 _collider = gameObject.AddComponent<SphereCollider>();    
@@ -41,21 +47,34 @@ namespace Game.Scripts.Level
 
             if (Time.time - _lastTargetSet > 1)
             {
+                Debug.Log("reset target after 1 sec");
                 _target = null;
             }
 
             if (_target != null)
             {
                 var d = _target.Value - transform.position;
-                if (d.magnitude < 0.1f)
+                Debug.Log("d="+d.magnitude);
+                if (d.magnitude < 0.05f)
                 {
+                    var currFood = GameManager.Get().Level.GetFood();
+                    if (null != currFood)
+                    {
+                        var currPart = currFood.GetClosetPart(transform);
+                        if (currPart != null)
+                        {
+                            var foodPart = currPart.GetComponent<FoodPart>();
+                            foodPart.Eat(1);   
+                        }
+                    }
                     _target = null;
                     _body.velocity = Vector3.zero;
                 }
                 else
                 {
+                    var a = d.normalized;
                     var v = 100;
-                    _body.velocity = new Vector3(d.x * Time.deltaTime * v, 0, d.z * Time.deltaTime * v);
+                    _body.velocity = new Vector3(a.x * v * Time.deltaTime, 0, a.z * v * Time.deltaTime);
                 }
                 return;
             }
@@ -66,11 +85,13 @@ namespace Game.Scripts.Level
                 return;
             }
 
-            var part = food.GetClosetPart(transform.position);
+            var part = food.GetClosetPart(transform);
             if (null == part)
             {
                 return;
             }
+            
+            Debug.Log("target:" + part.name);
 
             var target = part.transform.position;
             target.y = transform.position.y;

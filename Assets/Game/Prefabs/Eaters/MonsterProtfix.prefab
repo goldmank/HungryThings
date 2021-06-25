@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1110473899456196206}
-  m_Layer: 0
+  - component: {fileID: 1025434640416765991}
+  - component: {fileID: 8134983480463091319}
+  m_Layer: 10
   m_Name: MonsterProtfix
-  m_TagString: Untagged
+  m_TagString: ant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298049617891538132}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -38,7 +40,34 @@ Transform:
   - {fileID: 5773514235979669328}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!114 &1025434640416765991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298049617891538132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a3dbffad304e178c8dc810bddab85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _power: 1
+  _collider: {fileID: 8134983480463091319}
+--- !u!65 &8134983480463091319
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298049617891538132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.49, z: 0.54}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &559136419917026878
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,7 +79,7 @@ GameObject:
   - component: {fileID: 2679045835640924401}
   - component: {fileID: 3355817078105505823}
   - component: {fileID: 249276897626937590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +158,7 @@ GameObject:
   - component: {fileID: 3063266824060253791}
   - component: {fileID: 1754602820918465181}
   - component: {fileID: 2856900129837549765}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +237,7 @@ GameObject:
   - component: {fileID: 3694222855639309364}
   - component: {fileID: 1908574728885573961}
   - component: {fileID: 6267013170032767645}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +316,7 @@ GameObject:
   - component: {fileID: 4784855637243858889}
   - component: {fileID: 4784855637240991721}
   - component: {fileID: 4784855637242088745}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4784855637243858891}
   - component: {fileID: 5385430281797208074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GooglyEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +445,7 @@ GameObject:
   - component: {fileID: 4784855637243858893}
   - component: {fileID: 4784855637240991725}
   - component: {fileID: 4784855637242088749}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: backplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +524,7 @@ GameObject:
   - component: {fileID: 4784855637243858895}
   - component: {fileID: 4784855637240991727}
   - component: {fileID: 4784855637242088751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +603,7 @@ GameObject:
   - component: {fileID: 7408496087452006831}
   - component: {fileID: 3186953316630509057}
   - component: {fileID: 3481268788675420162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +682,7 @@ GameObject:
   - component: {fileID: 5915421769387360465}
   - component: {fileID: 1524506077370086664}
   - component: {fileID: 1010561754185291573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5773514235979669328}
   - component: {fileID: 6396369366516963473}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GooglyEye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +811,7 @@ GameObject:
   - component: {fileID: 5773514235979669330}
   - component: {fileID: 5773514235976802162}
   - component: {fileID: 5773514235977899442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +890,7 @@ GameObject:
   - component: {fileID: 5773514235979669332}
   - component: {fileID: 5773514235976802164}
   - component: {fileID: 5773514235977899444}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,7 +969,7 @@ GameObject:
   - component: {fileID: 5773514235979669334}
   - component: {fileID: 5773514235976802166}
   - component: {fileID: 5773514235977899446}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: backplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1048,7 @@ GameObject:
   - component: {fileID: 1242133794315989993}
   - component: {fileID: 1964321851254808011}
   - component: {fileID: 8331000156153333400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1098,7 +1127,7 @@ GameObject:
   - component: {fileID: 2513939541063436583}
   - component: {fileID: 3258066266941744105}
   - component: {fileID: 4153801322326706897}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box011
   m_TagString: Untagged
   m_Icon: {fileID: 0}

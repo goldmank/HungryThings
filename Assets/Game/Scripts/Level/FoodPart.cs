@@ -40,7 +40,7 @@ namespace Game.Scripts.Level
             if (_lastDustTime <= 0 || Time.time - _lastDustTime > 0.6f)
             {
                 _lastDustTime = Time.time;
-                ModelManager.Get().Vfx.Create(VfxType.Dust, transform.position, 2);
+                ModelManager.Get().Vfx.Create(VfxType.Dust, transform.position - new Vector3(0, 1, 0), 2);
             }
 
             _health -= damage;

@@ -86,7 +86,7 @@ namespace Game.Scripts.Level
             var pos = hit.point;
             pos.y = 4;
             
-            Debug.Log(pos);
+            //Debug.Log(pos);
             _eater.transform.position = pos;
         }
     }

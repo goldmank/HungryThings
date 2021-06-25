@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Level
 {
@@ -47,35 +48,47 @@ namespace Game.Scripts.Level
 
             if (Time.time - _lastTargetSet > 1)
             {
-                Debug.Log("reset target after 1 sec");
-                _target = null;
+                //Debug.Log("reset target after 1 sec");
+                //_target = null;
             }
 
             if (_target != null)
             {
-                var d = _target.Value - transform.position;
-                Debug.Log("d="+d.magnitude);
-                if (d.magnitude < 0.05f)
+                var dist = _target.Value - _body.position;
+                var d = Mathf.Sqrt(dist.x * dist.x + dist.y * dist.y);
+                //Debug.Log("d="+d.magnitude);
+                if (d < 0.025f)
                 {
-                    var currFood = GameManager.Get().Level.GetFood();
-                    if (null != currFood)
-                    {
-                        var currPart = currFood.GetClosetPart(transform);
-                        if (currPart != null)
-                        {
-                            var foodPart = currPart.GetComponent<FoodPart>();
-                            foodPart.Eat(1);   
-                        }
-                    }
-                    _target = null;
-                    _body.velocity = Vector3.zero;
+                    Debug.Log("reach target");
+                    // var currFood = GameManager.Get().Level.GetFood();
+                    // if (null != currFood)
+                    // {
+                    //     var currPart = currFood.GetClosetFoodPart(transform);
+                    //     if (currPart != null)
+                    //     {
+                    //         d = currPart.position - transform.position;
+                    //         if (d.magnitude < 0.025f)
+                    //         {
+                    //             var foodPart = currPart.GetComponent<FoodPart>();
+                    //             foodPart.Eat(1);
+                    //         }
+                    //     }
+                    // }
+                    //_target = null;
+                    //_body.velocity = Vector3.zero;
                 }
                 else
                 {
-                    var a = d.normalized;
-                    var v = 100;
-                    _body.velocity = new Vector3(a.x * v * Time.deltaTime, 0, a.z * v * Time.deltaTime);
+                    //var a = Mathf.Atan2(dist.y,dist.x);
+                    //Debug.Log("a="+a);
+                    var a = Mathf.Atan2(dist.y,dist.x);
+                    //Debug.Log(a);
+                    var v = 150;
+                    //_body.velocity = new Vector3(Mathf.Cos(a) * v * Time.deltaTime, Mathf.Sin(a) * v * Time.deltaTime, 0);
                 }
+
+                var p = transform.position;
+                //Debug.Log("(" + p.x + "," + p.z + ") -> (" + _target.Value.x + "," + _target.Value.y + "," + _target.Value.z + ")   d=" + d);
                 return;
             }
         
@@ -85,18 +98,19 @@ namespace Game.Scripts.Level
                 return;
             }
 
-            var part = food.GetClosetPart(transform);
+            var part = food.GetClosetFoodPart(transform, true);
             if (null == part)
             {
                 return;
             }
             
-            Debug.Log("target:" + part.name);
-
             var target = part.transform.position;
-            target.y = transform.position.y;
-            _target = target;
+            //target.y = transform.position.y;
+            _target = target;// + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
             _lastTargetSet = Time.time;
+            
+            Debug.Log("_from_:" + transform.position.x+","+transform.position.y+","+transform.position.z);
+            Debug.Log("_to_:" + part.name + " - " + target.x+","+target.y+","+target.z);
         }
 
         public void SetFood(FoodObject foodObject)
@@ -108,7 +122,7 @@ namespace Game.Scripts.Level
         {
             if (other.collider.CompareTag("food"))
             {
-                Debug.Log("ant collide food");
+                //Debug.Log("ant collide food");
                 var foodPart = other.collider.GetComponent<FoodPart>();
                 foodPart.Eat(_power * Time.deltaTime);
                 return;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Scripts.Level;
 using Game.Scripts.Model;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace Game.Scripts
             }
         
             var v = _mainBody.velocity.magnitude;
-            Debug.Log(v);
+            //Debug.Log(v);
             if (v < 0.0001f)
             {
                 //BuildBodyParts();
@@ -108,6 +109,7 @@ namespace Game.Scripts
             }
             _foodParts.Remove(obj);
             _foodOnFloor.Remove(obj);
+            _usedFood.Remove(obj.transform);
         }
         
         private void FoodOnFloor(FoodPart obj)
@@ -410,18 +412,18 @@ namespace Game.Scripts
         //     _bodyParts.Remove(obj);
         // }
 
-        public Transform GetClosetPart(Transform eater)
-        {
-            return GetClosetFoodPart(eater);
-
-            // var body = GetClosetBodyPart(pos);
-            // if (null == body)
-            // {
-            //     return null;
-            // }
-            //
-            // return body.transform;
-        }
+        // public Transform GetClosetPart(Transform eater)
+        // {
+        //     return GetClosetFoodPart(eater);
+        //
+        //     // var body = GetClosetBodyPart(pos);
+        //     // if (null == body)
+        //     // {
+        //     //     return null;
+        //     // }
+        //     //
+        //     // return body.transform;
+        // }
     
         // private BodyPart GetClosetBodyPart(Vector3 pos)
         // {
@@ -450,12 +452,28 @@ namespace Game.Scripts
         //     return bestPart;
         // }
     
-        private Transform GetClosetFoodPart(Transform eater)
+        Dictionary<Transform, Transform> _usedFood = new Dictionary<Transform, Transform>();
+        
+        public Transform GetClosetFoodPart(Transform eater, bool random = false)
         {
+            if (_foodOnFloor.Count == 0)
+            {
+                return null;
+            }
             var pos = eater.position;
             
             var bestD = float.MaxValue;
             Transform bestPart = null;
+
+            if (random)
+            {
+                // for (var i = 0; i < _foodParts.Count; i++)
+                // {
+                //     Debug.Log(i + " = " + _foodParts[i].transform.position + " - " + _foodParts[i].name);
+                // }
+                var rndIndex = 293;//Random.Range(0, _foodParts.Count);
+                return _foodParts[rndIndex].transform;
+            }
             foreach (var bodyPart in _foodOnFloor)
             {
                 var partPos = bodyPart.transform.position;
@@ -463,11 +481,24 @@ namespace Game.Scripts
                 var d = Mathf.Sqrt(dVec.x * dVec.x + dVec.z * dVec.z);
                 if (d < bestD)
                 {
+                    // if (_usedFood.TryGetValue(bodyPart.transform, out var usedEater))
+                    // {
+                    //     if (usedEater != eater)
+                    //     {
+                    //         continue;
+                    //     }
+                    // }
                     bestD = d;
                     bestPart = bodyPart.transform;
                 }
                 //Debug.Log(bodyPart.name + " - " + partPos.x + "," + partPos.y + "," + partPos.z + " = " + d);
             }
+
+            // if (bestPart == null)
+            // {
+            //     return null;
+            // }
+            // _usedFood[bestPart] = eater;
 
             // var p = bestPart.position;
             // Debug.Log("GetClosetFoodPart(" + pos.x + ", " + pos.y + ", " + pos.z + ") = " + bestD + " - (" + p.x + "," + p.y + "," + p.z + ")");

@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Game.Art.HolyShift.Scripts
+namespace Game.Art.HolyShift.Editor
 {
 	[ExecuteInEditMode]
 	public class CheckForStandardAssets : MonoBehaviour {

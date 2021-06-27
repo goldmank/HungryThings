@@ -103,10 +103,10 @@ namespace Game.Scripts
 
         private void FoodPartOnRemoved(FoodPart obj)
         {
-            foreach (var foodPart in _foodParts)
-            {
-                foodPart.RemoveBind(obj.Body);
-            }
+            // foreach (var foodPart in _foodParts)
+            // {
+            //     foodPart.RemoveBind(obj.Body);
+            // }
             _foodParts.Remove(obj);
             _foodOnFloor.Remove(obj);
             _usedFood.Remove(obj.transform);
@@ -456,29 +456,29 @@ namespace Game.Scripts
         
         public Transform GetClosetFoodPart(Transform eater, bool random = false)
         {
-            if (_foodOnFloor.Count == 0)
-            {
-                return null;
-            }
+            // if (_foodOnFloor.Count == 0)
+            // {
+            //     return null;
+            // }
             var pos = eater.position;
             
             var bestD = float.MaxValue;
             Transform bestPart = null;
 
-            if (random)
-            {
-                // for (var i = 0; i < _foodParts.Count; i++)
-                // {
-                //     Debug.Log(i + " = " + _foodParts[i].transform.position + " - " + _foodParts[i].name);
-                // }
-                var rndIndex = 293;//Random.Range(0, _foodParts.Count);
-                return _foodParts[rndIndex].transform;
-            }
-            foreach (var bodyPart in _foodOnFloor)
+            // if (random)
+            // {
+            //     // for (var i = 0; i < _foodParts.Count; i++)
+            //     // {
+            //     //     Debug.Log(i + " = " + _foodParts[i].transform.position + " - " + _foodParts[i].name);
+            //     // }
+            //     var rndIndex = 293;//Random.Range(0, _foodParts.Count);
+            //     return _foodParts[rndIndex].transform;
+            // }
+            foreach (var bodyPart in _foodParts)
             {
                 var partPos = bodyPart.transform.position;
                 var dVec = partPos - pos;
-                var d = Mathf.Sqrt(dVec.x * dVec.x + dVec.z * dVec.z);
+                var d = Mathf.Sqrt(dVec.x * dVec.x + dVec.z * dVec.z + dVec.y*dVec.y*1000);
                 if (d < bestD)
                 {
                     // if (_usedFood.TryGetValue(bodyPart.transform, out var usedEater))

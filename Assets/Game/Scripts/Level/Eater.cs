@@ -13,6 +13,7 @@ namespace Game.Scripts.Level
         private Vector3? _target;
         private float _lastTargetSet;
         private float _lastEat;
+        private float _spawnTime;
 
         private void Start()
         {
@@ -33,10 +34,15 @@ namespace Game.Scripts.Level
                 _collider = gameObject.AddComponent<SphereCollider>();    
             }
             _collider.enabled = true;
+            _spawnTime = Time.time;
         }
     
         void Update()
         {
+            if (Time.time - _spawnTime < 0.5f)
+            {
+                return;
+            }
             if (_body == null)
             {
                 return;
@@ -54,12 +60,12 @@ namespace Game.Scripts.Level
 
             if (_target != null)
             {
-                var dist = _target.Value - _body.position;
-                var d = Mathf.Sqrt(dist.x * dist.x + dist.y * dist.y);
+                var dist = _target.Value - transform.position;
+                var d = Mathf.Sqrt(dist.x * dist.x + dist.z * dist.z);
                 //Debug.Log("d="+d.magnitude);
                 if (d < 0.025f)
                 {
-                    Debug.Log("reach target");
+                    //Debug.Log("reach target");
                     // var currFood = GameManager.Get().Level.GetFood();
                     // if (null != currFood)
                     // {
@@ -74,17 +80,17 @@ namespace Game.Scripts.Level
                     //         }
                     //     }
                     // }
-                    //_target = null;
-                    //_body.velocity = Vector3.zero;
+                    _target = null;
+                    _body.velocity = Vector3.zero;
                 }
                 else
                 {
                     //var a = Mathf.Atan2(dist.y,dist.x);
                     //Debug.Log("a="+a);
-                    var a = Mathf.Atan2(dist.y,dist.x);
+                    var a = Mathf.Atan2(dist.z,dist.x);
                     //Debug.Log(a);
                     var v = 150;
-                    //_body.velocity = new Vector3(Mathf.Cos(a) * v * Time.deltaTime, Mathf.Sin(a) * v * Time.deltaTime, 0);
+                    _body.velocity = new Vector3(Mathf.Cos(a) * v * Time.deltaTime, 0, Mathf.Sin(a) * v * Time.deltaTime);
                 }
 
                 var p = transform.position;
@@ -105,7 +111,7 @@ namespace Game.Scripts.Level
             }
             
             var target = part.transform.position;
-            //target.y = transform.position.y;
+            target.y = transform.position.y;
             _target = target;// + new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
             _lastTargetSet = Time.time;
             

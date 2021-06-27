@@ -8,10 +8,10 @@ namespace Game.Scripts.Level
     public class FoodPart : MonoBehaviour
     {
         [SerializeField] private float _health;
-        [SerializeField] private Rigidbody _body;
-        [SerializeField] private FixedJoint[] _joints;
+        // [SerializeField] private Rigidbody _body;
+        // [SerializeField] private FixedJoint[] _joints;
 
-        public Rigidbody Body => _body;
+        //public Rigidbody Body => _body;
 
         private float _lastDustTime;
 
@@ -21,12 +21,12 @@ namespace Game.Scripts.Level
 #if UNITY_EDITOR
         public void SetBody(Rigidbody rigidbody)
         {
-            _body = rigidbody;
+            //_body = rigidbody;
         }
 
         public void SetJoints(FixedJoint[] joints)
         {
-            _joints = joints;
+            //_joints = joints;
         }
 #endif
         
@@ -52,30 +52,30 @@ namespace Game.Scripts.Level
             Destroy(gameObject);
         }
 
-        private void OnCollisionEnter(Collision other)
-        {
-            if (!other.collider.CompareTag("floor"))
-            {
-                return;
-            }
-            OnFloor?.Invoke(this);
-        }
-
-        public void RemoveBind(Rigidbody other)
-        {
-            for (var i = 0; i < _joints.Length; i++)
-            {
-                var joint = _joints[i];
-                if (joint == null)
-                {
-                    continue;
-                }
-                if (joint.connectedBody == other)
-                {
-                    Destroy(joint);
-                    _joints[i] = null;
-                }
-            }
-        }
+        // private void OnCollisionEnter(Collision other)
+        // {
+        //     if (!other.collider.CompareTag("floor"))
+        //     {
+        //         return;
+        //     }
+        //     OnFloor?.Invoke(this);
+        // }
+        //
+        // public void RemoveBind(Rigidbody other)
+        // {
+        //     for (var i = 0; i < _joints.Length; i++)
+        //     {
+        //         var joint = _joints[i];
+        //         if (joint == null)
+        //         {
+        //             continue;
+        //         }
+        //         if (joint.connectedBody == other)
+        //         {
+        //             Destroy(joint);
+        //             _joints[i] = null;
+        //         }
+        //     }
+        // }
     }
 }

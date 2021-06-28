@@ -474,31 +474,65 @@ namespace Game.Scripts
             //     var rndIndex = 293;//Random.Range(0, _foodParts.Count);
             //     return _foodParts[rndIndex].transform;
             // }
+            var min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+            var max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+            foreach (var bodyPart in _foodParts)
+            {
+                var p = bodyPart.transform.position;
+                min.x = Mathf.Min(min.x, p.x);
+                min.y = Mathf.Min(min.y, p.y);
+                min.z = Mathf.Min(min.z, p.z);
+                max.x = Mathf.Max(max.x, p.x);
+                max.y = Mathf.Max(max.y, p.y);
+                max.z = Mathf.Max(max.z, p.z);
+            }
+
+            var center = (max - min) / 2;
+
+            bestD = float.MinValue;
             foreach (var bodyPart in _foodParts)
             {
                 var partPos = bodyPart.transform.position;
+                
                 var dVec = partPos - pos;
                 var d = Mathf.Sqrt(dVec.x * dVec.x + dVec.z * dVec.z + dVec.y*dVec.y*1000);
-                if (d < bestD)
+                
+                var dCenter = partPos - center;
+                var dc = Mathf.Sqrt(dCenter.x * dCenter.x + dCenter.z * dCenter.z) - dVec.y*dVec.y*1000;
+                if (dc > bestD)
                 {
-                    // if (_usedFood.TryGetValue(bodyPart.transform, out var usedEater))
-                    // {
-                    //     if (usedEater != eater)
-                    //     {
-                    //         continue;
-                    //     }
-                    // }
-                    bestD = d;
+                    if (_usedFood.TryGetValue(bodyPart.transform, out var usedEater))
+                    {
+                        if (usedEater != eater)
+                        {
+                            continue;
+                        }
+                    }
+                    bestD = dc;
                     bestPart = bodyPart.transform;
                 }
+                
+                
+                // if (d < bestD)
+                // {
+                //     if (_usedFood.TryGetValue(bodyPart.transform, out var usedEater))
+                //     {
+                //         if (usedEater != eater)
+                //         {
+                //             continue;
+                //         }
+                //     }
+                //     bestD = d;
+                //     bestPart = bodyPart.transform;
+                // }
                 //Debug.Log(bodyPart.name + " - " + partPos.x + "," + partPos.y + "," + partPos.z + " = " + d);
             }
 
-            // if (bestPart == null)
-            // {
-            //     return null;
-            // }
-            // _usedFood[bestPart] = eater;
+            if (bestPart == null)
+            {
+                return null;
+            }
+            _usedFood[bestPart] = eater;
 
             // var p = bestPart.position;
             // Debug.Log("GetClosetFoodPart(" + pos.x + ", " + pos.y + ", " + pos.z + ") = " + bestD + " - (" + p.x + "," + p.y + "," + p.z + ")");

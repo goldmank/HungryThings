@@ -18,6 +18,7 @@ namespace Game.Scripts.Level
         private float _lastEat;
         private float _spawnTime;
         private float _lastDustTime;
+        private bool _finished;
 
         private void Start()
         {
@@ -39,9 +40,20 @@ namespace Game.Scripts.Level
             _collider.enabled = true;
             _spawnTime = Time.time;
         }
+
+        public void Finish()
+        {
+            Destroy(_body);
+            Destroy(_collider);
+            _finished = true;
+        }
     
         void Update()
         {
+            if (_finished)
+            {
+                return;
+            }
             if (Time.time - _spawnTime < 0.5f)
             {
                 return;

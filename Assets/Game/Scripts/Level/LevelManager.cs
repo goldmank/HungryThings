@@ -9,6 +9,7 @@ using Game.Scripts.Model;
 using Game.Scripts.Model.Food;
 using Game.Scripts.Model.HiddenObject;
 using Game.Scripts.Model.Level;
+using Game.Scripts.Model.Vfx;
 using GameAnalyticsSDK;
 using GameAnalyticsSDK.Events;
 using IO.Infra.Scripts.Events;
@@ -25,6 +26,7 @@ namespace Game.Scripts.Level
         [SerializeField] private float _rotateSpeed;
         [SerializeField] private float _rotateSize;
         [SerializeField] private SwipeDetector _swipeDetector;
+        [SerializeField] private Transform _zoomPos;
         
         private List<Eater> _ants = new List<Eater>();
         
@@ -190,6 +192,49 @@ namespace Game.Scripts.Level
 
             pos /= eaters.Count;
             Debug.Log("point camera to: " + pos);
+
+            var posA = 0.0f;
+            foreach (var eater in eaters)
+            {
+                eater.Finish();
+                
+                var target = Vector3.zero;
+                var currPos = eater.transform.position;
+                var r = Random.Range(-2.2f, 2.2f);
+                target.x += Mathf.Cos(posA) * r;
+                target.z += Mathf.Sin(posA) * r;
+                target.y = currPos.y;
+                posA += Mathf.PI * 0.2f;
+
+                var d = _zoomPos.position - target;
+                var a = Mathf.Atan2(d.z, d.x);
+                eater.transform.DOMove(target, 0.5f);
+                eater.transform.DOLocalRotate(new Vector3(-90, 180 + -140 + a * Mathf.Rad2Deg, 0), 0.5f);
+            }
+
+            GameManager.Get().Camera.transform.DOMove(_zoomPos.position, 1f);
+            GameManager.Get().Camera.transform.DORotate(_zoomPos.rotation.eulerAngles, 1f);
+            
+            ModelManager.Get().Tasker.Run(() =>
+            {
+                ModelManager.Get().Vfx.Create(VfxType.Pop, Vector3.zero, 3);
+            }, 1);
+            ModelManager.Get().Tasker.Run(() =>
+            {
+                ModelManager.Get().Vfx.Create(VfxType.Pop, new Vector3(0, 0.5f, 0), 3);
+            }, 1.2f);
+            ModelManager.Get().Tasker.Run(() =>
+            {
+                ModelManager.Get().Vfx.Create(VfxType.Pop, Vector3.zero, 3);
+            }, 1.4f);
+
+            ModelManager.Get().Tasker.Run(() =>
+            {
+                foreach (var eater in eaters)
+                {
+                    eater.transform.DOJump(eater.transform.position, 0.6f, 4, 1.6f).SetDelay(Random.Range(0, 0.5f)).SetEase(Ease.Linear);
+                }
+            }, 1.0f);
         }
 
         private void OnDestroy()
@@ -235,39 +280,39 @@ namespace Game.Scripts.Level
         
         private void OnSwipeDetected(SwipeDetector.SwipeDirection swipeDirection)
         {
-            if (!_autoRotate)
-            {
-                Debug.Log("in middle of swipe rotate");
-                return;
-            }
-            
-            var rotation = transform.rotation.eulerAngles;
-            Debug.Log("OnSwipeDetected: " + swipeDirection);
-            Debug.Log("rotation: " + rotation);
-            
-            switch (swipeDirection)
-            {
-                case SwipeDetector.SwipeDirection.Left:
-                {
-                    SwipeRotate(rotation + Vector3.up * _rotateSize);
-                }
-                    break;
-                case SwipeDetector.SwipeDirection.Right:
-                {
-                    SwipeRotate(rotation + Vector3.down * _rotateSize);
-                }
-                    break;
-                case SwipeDetector.SwipeDirection.Up:
-                {
-                    //SwipeRotate(rotation + Vector3.right * _rotateSize);
-                }
-                    break;
-                case SwipeDetector.SwipeDirection.Down:
-                {
-                    //SwipeRotate(rotation + Vector3.left * _rotateSize);
-                }
-                    break;
-            }
+            // if (!_autoRotate)
+            // {
+            //     Debug.Log("in middle of swipe rotate");
+            //     return;
+            // }
+            //
+            // var rotation = transform.rotation.eulerAngles;
+            // Debug.Log("OnSwipeDetected: " + swipeDirection);
+            // Debug.Log("rotation: " + rotation);
+            //
+            // switch (swipeDirection)
+            // {
+            //     case SwipeDetector.SwipeDirection.Left:
+            //     {
+            //         SwipeRotate(rotation + Vector3.up * _rotateSize);
+            //     }
+            //         break;
+            //     case SwipeDetector.SwipeDirection.Right:
+            //     {
+            //         SwipeRotate(rotation + Vector3.down * _rotateSize);
+            //     }
+            //         break;
+            //     case SwipeDetector.SwipeDirection.Up:
+            //     {
+            //         //SwipeRotate(rotation + Vector3.right * _rotateSize);
+            //     }
+            //         break;
+            //     case SwipeDetector.SwipeDirection.Down:
+            //     {
+            //         //SwipeRotate(rotation + Vector3.left * _rotateSize);
+            //     }
+            //         break;
+            // }
         }
 
         private void SwipeRotate(Vector3 target)

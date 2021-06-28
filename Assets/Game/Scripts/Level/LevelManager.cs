@@ -4,12 +4,14 @@ using DG.Tweening;
 using Game.Scripts.Audio;
 using Game.Scripts.Infra;
 using Game.Scripts.Infra.Analytics;
+using Game.Scripts.Infra.Events;
 using Game.Scripts.Model;
 using Game.Scripts.Model.Food;
 using Game.Scripts.Model.HiddenObject;
 using Game.Scripts.Model.Level;
 using GameAnalyticsSDK;
 using GameAnalyticsSDK.Events;
+using IO.Infra.Scripts.Events;
 using UnityEngine;
 
 namespace Game.Scripts.Level
@@ -31,6 +33,7 @@ namespace Game.Scripts.Level
         private FoodObject _food;
         private World _world;
         private bool _autoRotate;
+        private bool _completed;
 
         public void Load(int levelIndex)
         {
@@ -70,7 +73,7 @@ namespace Game.Scripts.Level
             _world = Instantiate(worldData.Prefab, _objectContainer);
 
             //_food = FindObjectOfType<FoodObject>();
-            _food = Instantiate(objectData.Prefab, _world.SpawnPoint, Quaternion.Euler(0, 0, 30));
+            _food = Instantiate(objectData.Prefab, _world.SpawnPoint, Quaternion.Euler(0, 0, 0));
             _food.transform.parent = _objectContainer;
             _food.FoodReady += (newFood) =>
             {
@@ -163,6 +166,30 @@ namespace Game.Scripts.Level
 
             var eaterSpawner = gameObject.AddComponent<EaterSpawner>();
             eaterSpawner.Init(_objectContainer);
+            
+            SimpleEventManager.Get().Subscribe(Events.Game.LevelCompleted, OnLevelCompleted);
+        }
+
+        private void OnLevelCompleted(EventParams obj)
+        {
+            if (_completed)
+            {
+                return;
+            }
+            _completed = true;
+            
+            GameManager.Get().Ui.GameHud.ShowGameOver();
+
+            var eaterSpawner = gameObject.GetComponent<EaterSpawner>();
+            var eaters = eaterSpawner.Eaters;
+            var pos = Vector3.zero;
+            foreach (var eater in eaters)
+            {
+                pos += eater.transform.position;
+            }
+
+            pos /= eaters.Count;
+            Debug.Log("point camera to: " + pos);
         }
 
         private void OnDestroy()
@@ -172,6 +199,10 @@ namespace Game.Scripts.Level
 
         private void Update()
         {
+            if (_completed)
+            {
+                return;
+            }
             if (!GameManager.Get().Ui.GameHud.gameObject.activeSelf)
             {
                 return;

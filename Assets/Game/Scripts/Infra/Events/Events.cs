@@ -7,6 +7,7 @@ namespace IO.Infra.Scripts.Events
             public static string EaterHolderSpawn = "EaterHolderSpawn";
             public static string EaterHolderDiscard = "EaterHolderDiscard";
             public static string EaterHolderReleased = "EaterHolderReleased";
+            public static string LevelCompleted = "LevelCompleted";
 
             public static string ParamEaterType = "EaterType";
         }

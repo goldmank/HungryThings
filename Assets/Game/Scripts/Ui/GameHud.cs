@@ -1,3 +1,4 @@
+using Game.Scripts.Infra;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ namespace Game.Scripts.Ui
     public class GameHud : MonoBehaviour
     {
         [SerializeField] private CoinsView _coins;
-        [SerializeField] private LevelProgress _levelProgress;
+        
         [SerializeField] private MenuButton _levelsButton;
         //[SerializeField] private MenuButton _containerButton;
         [SerializeField] private MenuButton _standsButton;
@@ -18,11 +19,20 @@ namespace Game.Scripts.Ui
         [SerializeField] private Image _objectAmountIcon;
         [SerializeField] private Image _levelDescIcon;
         [SerializeField] private GameObject _settingsButton;
+        
+        [SerializeField] private LevelProgress _levelProgress;
+        [SerializeField] private GameObject _spawnButton;
 
         public LevelProgress LevelProgress => _levelProgress;
 
         public Image LevelDescIcon => _levelDescIcon;
 
+        public void ShowGameOver()
+        {
+            _levelProgress.Hide();
+            Utils.FadeTo(_spawnButton, 0.3f, 0);
+        }
+        
         public void SetLevelNumber(int level)
         {
             _levelNumber.text = "LEVEL " + level;

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Scripts.Infra;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,11 @@ namespace Game.Scripts.Ui
         [SerializeField] private RectTransform _bar;
         [SerializeField] private RectTransform[] _markers;
 
+        public void Hide()
+        {
+            Utils.FadeTo(gameObject, 0.3f, 0);
+        }
+        
         public void SetProgress(float progress, bool immidate = false)
         {
             if (immidate)

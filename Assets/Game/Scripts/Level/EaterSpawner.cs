@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.Scripts.Infra.Events;
 using Game.Scripts.Model;
 using IO.Infra.Scripts.Events;
@@ -9,7 +10,11 @@ namespace Game.Scripts.Level
     {
         private Transform _world;
         private Eater _eater;
-        
+
+        private List<Eater> _eaters = new List<Eater>();
+
+        public List<Eater> Eaters => _eaters;
+
         private void Start()
         {
             SimpleEventManager.Get().Subscribe(Events.Game.EaterHolderSpawn, OnEaterHolderSpawn);
@@ -68,6 +73,8 @@ namespace Game.Scripts.Level
                 return;
             }
             
+            _eaters.Add(_eater);
+            
             _eater.Init(1);
             _eater = null;
         }
@@ -83,8 +90,8 @@ namespace Game.Scripts.Level
                 return;
             }
 
-            var pos = hit.point;
-            pos.y = 4;
+            var pos = hit.point; 
+            pos.y = 2;
             
             //Debug.Log(pos);
             _eater.transform.position = pos;

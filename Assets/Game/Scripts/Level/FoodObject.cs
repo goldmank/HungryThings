@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Scripts.Infra.Events;
 using Game.Scripts.Level;
 using Game.Scripts.Model;
+using IO.Infra.Scripts.Events;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,13 +22,17 @@ namespace Game.Scripts
         //private List<BodyPart> _bodyParts;
         private List<FoodPart> _foodParts;
         private HashSet<FoodPart> _foodOnFloor;
+        private bool _completed;
 
         public event Action<FoodObject> FoodReady;
+
+        private int _totalParts;
 
         private void Start()
         {
             FetchFoodParts();
-        
+            GameManager.Get().Ui.GameHud.LevelProgress.SetProgress(0);
+
             // Destroy(_mainBody);
             // _mainBody = null;
             // Destroy(_mainCollider);
@@ -110,6 +116,14 @@ namespace Game.Scripts
             _foodParts.Remove(obj);
             _foodOnFloor.Remove(obj);
             _usedFood.Remove(obj.transform);
+
+            var progress = 1.0f - (float) _foodParts.Count / _totalParts;
+            GameManager.Get().Ui.GameHud.LevelProgress.SetProgress(progress);
+            if (progress >= 1)
+            {
+                _completed = true;
+                SimpleEventManager.Get().TriggerEvent(Events.Game.LevelCompleted);
+            }
         }
         
         private void FoodOnFloor(FoodPart obj)
@@ -130,6 +144,8 @@ namespace Game.Scripts
                 foodPart.OnFloor += FoodOnFloor;
                 _foodParts.Add(foodPart);
             }
+
+            _totalParts = _foodParts.Count;
         }
 
         // private void BuildBodyParts()

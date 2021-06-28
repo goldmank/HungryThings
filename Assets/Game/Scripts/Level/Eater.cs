@@ -10,6 +10,7 @@ namespace Game.Scripts.Level
     {
         [SerializeField] private float _power;
         [SerializeField] private Collider _collider;
+        [SerializeField] private Transform _obj;
 
         private Rigidbody _body;
         private Vector3? _target;
@@ -30,8 +31,7 @@ namespace Game.Scripts.Level
         {
             _power = power;
             _body = gameObject.AddComponent<Rigidbody>();
-            _body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-                                RigidbodyConstraints.FreezeRotationZ; 
+            _body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ; 
             if (null == _collider)
             {
                 _collider = gameObject.AddComponent<SphereCollider>();    
@@ -94,6 +94,7 @@ namespace Game.Scripts.Level
                     //Debug.Log(a);
                     var v = 150;
                     _body.velocity = new Vector3(Mathf.Cos(a) * v * Time.deltaTime, 0, Mathf.Sin(a) * v * Time.deltaTime);
+                    _obj.localRotation = Quaternion.Euler(0, 0, -144 + a * Mathf.Rad2Deg);
                 }
 
                 var p = transform.position;

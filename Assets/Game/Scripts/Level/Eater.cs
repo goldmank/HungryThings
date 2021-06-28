@@ -1,4 +1,6 @@
 ﻿using System;
+using Game.Scripts.Model;
+using Game.Scripts.Model.Vfx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +16,7 @@ namespace Game.Scripts.Level
         private float _lastTargetSet;
         private float _lastEat;
         private float _spawnTime;
+        private float _lastDustTime;
 
         private void Start()
         {
@@ -131,6 +134,12 @@ namespace Game.Scripts.Level
                 //Debug.Log("ant collide food");
                 var foodPart = other.collider.GetComponent<FoodPart>();
                 foodPart.Eat(_power * Time.deltaTime);
+                
+                if (_lastDustTime <= 0 || Time.time - _lastDustTime > 0.6f)
+                {
+                    _lastDustTime = Time.time;
+                    ModelManager.Get().Vfx.Create(VfxType.Dust, transform.position, 2);
+                }
                 return;
             }
         

@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Game.Scripts.Model;
 using Game.Scripts.Model.Vfx;
 using UnityEngine;
@@ -12,9 +13,7 @@ namespace Game.Scripts.Level
         // [SerializeField] private FixedJoint[] _joints;
 
         //public Rigidbody Body => _body;
-
-        private float _lastDustTime;
-
+        
         public event Action<FoodPart> Removed;
         public event Action<FoodPart> OnFloor;
 
@@ -37,19 +36,16 @@ namespace Game.Scripts.Level
 
         public void Eat(float damage)
         {
-            if (_lastDustTime <= 0 || Time.time - _lastDustTime > 0.6f)
-            {
-                _lastDustTime = Time.time;
-                ModelManager.Get().Vfx.Create(VfxType.Dust, transform.position - new Vector3(0, 1, 0), 2);
-            }
-
             _health -= damage;
             if (_health > 0)
             {
                 return;
             }
             Removed?.Invoke(this);
-            Destroy(gameObject);
+            transform.DOScale(0, 0.2f).OnComplete(() =>
+            {
+                Destroy(gameObject); 
+            });
         }
 
         // private void OnCollisionEnter(Collision other)

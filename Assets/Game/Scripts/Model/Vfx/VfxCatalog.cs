@@ -35,7 +35,8 @@ namespace Game.Scripts.Model.Vfx
                 return;
             }
             
-            var newInstance = Instantiate(prefab, position, Quaternion.identity);
+            var newInstance = Instantiate(prefab);
+            newInstance.transform.position = position;
             if (null == cacheList)
             {
                 cacheList = new List<GameObject>();

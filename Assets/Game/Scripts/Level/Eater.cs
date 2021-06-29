@@ -153,6 +153,11 @@ namespace Game.Scripts.Level
                     _lastDustTime = Time.time;
                     ModelManager.Get().Vfx.Create(VfxType.Dust, transform.position, 2);
                 }
+
+                // if (Random.value > 0.8f)
+                // {
+                //     ModelManager.Get().Vfx.Create(VfxType.Coins, transform.position, 2);
+                // }
                 return;
             }
         

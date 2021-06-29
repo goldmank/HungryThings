@@ -22,7 +22,7 @@ MonoBehaviour:
     Name: 
     Rarity: 0
     Icon: {fileID: 0}
-    Prefab: {fileID: 7772193118085573813, guid: 94f3e152421c547038ca53e5f260649a,
+    Prefab: {fileID: 6500888627626965406, guid: a6669cd6dae6f42739d428ad2b052087,
       type: 3}
   RarityColor: []
   RarityMaterials: []

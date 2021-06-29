@@ -17,4 +17,6 @@ MonoBehaviour:
     Prefab: {fileID: 1195590025248188, guid: 7be84c5a6d280e747aed0cc219bf89a6, type: 3}
   - Type: 1
     Prefab: {fileID: 1161658302334184, guid: ca9e69f10cb0a854e9b9a5ce598e3c68, type: 3}
+  - Type: 2
+    Prefab: {fileID: 1286577080098034, guid: a15ef3b4e08ad764d98f89e326ed6388, type: 3}
   CoinFloatReward: {fileID: 0}

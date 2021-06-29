@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Game.Scripts.Model;
 using Game.Scripts.Model.Vfx;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace Game.Scripts.Level
         {
             _power = power;
             _body = gameObject.AddComponent<Rigidbody>();
-            _body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ; 
+            _body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ; 
             if (null == _collider)
             {
                 _collider = gameObject.AddComponent<SphereCollider>();    
@@ -62,7 +63,7 @@ namespace Game.Scripts.Level
             {
                 return;
             }
-            if (Math.Abs(_body.velocity.y) > 0.01f)
+            if (Math.Abs(_body.velocity.y) > 0.1f)
             {
                 return;
             }
@@ -106,7 +107,13 @@ namespace Game.Scripts.Level
                     //Debug.Log(a);
                     var v = 150;
                     _body.velocity = new Vector3(Mathf.Cos(a) * v * Time.deltaTime, 0, Mathf.Sin(a) * v * Time.deltaTime);
-                    _obj.localRotation = Quaternion.Euler(0, 0, -144 + a * Mathf.Rad2Deg);
+                    //_body.rotation = Quaternion.Euler(0, -120 + a * Mathf.Rad2Deg, 0);
+                    Debug.Log("a=" + (a * Mathf.Rad2Deg));
+                    _body.transform.DOLocalRotate(new Vector3(0, 180 + a * Mathf.Rad2Deg, 0), 0.5f);
+
+                    var t = Mathf.Atan2(_body.velocity.x, _body.velocity.z);
+                    _body.transform.DORotate(new Vector3(0, t * Mathf.Rad2Deg, 0), 0.1f);
+                    //_obj.localRotation = Quaternion.Euler(90, 0, a * Mathf.Rad2Deg);
                 }
 
                 var p = transform.position;

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Eaters:
   - Type: 0
-    Prefab: {fileID: 1025434640416765991, guid: ba63cfa6381cdc949b4dd99b473816c8,
+    Prefab: {fileID: 5757924802628998268, guid: 5bbac099cc59044daada383a742ecb09,
       type: 3}

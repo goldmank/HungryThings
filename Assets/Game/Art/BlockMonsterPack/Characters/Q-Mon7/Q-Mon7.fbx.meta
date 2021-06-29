@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: 58c03ed6e8eee1442a2719ce133e7a2f
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Body
+  - first:
+      1: 100002
+    second: Body_end
+  - first:
+      1: 100004
+    second: Control_Leg_L
+  - first:
+      1: 100006
+    second: Control_Leg_L_end
+  - first:
+      1: 100008
+    second: Control_Leg_R
+  - first:
+      1: 100010
+    second: Control_Leg_R_end
+  - first:
+      1: 100012
+    second: Control_SS
+  - first:
+      1: 100014
+    second: Control_SS_end
+  - first:
+      1: 100016
+    second: Hip_L
+  - first:
+      1: 100018
+    second: Hip_R
+  - first:
+      1: 100020
+    second: Leg_L
+  - first:
+      1: 100022
+    second: Leg_L_end
+  - first:
+      1: 100024
+    second: Leg_R
+  - first:
+      1: 100026
+    second: Leg_R_end
+  - first:
+      1: 100028
+    second: Pivot
+  - first:
+      1: 100030
+    second: Position
+  - first:
+      1: 100032
+    second: Q-Mon7
+  - first:
+      1: 100034
+    second: //RootNode
+  - first:
+      1: 100036
+    second: Q-Mon7_Objt
+  - first:
+      4: 400000
+    second: Body
+  - first:
+      4: 400002
+    second: Body_end
+  - first:
+      4: 400004
+    second: Control_Leg_L
+  - first:
+      4: 400006
+    second: Control_Leg_L_end
+  - first:
+      4: 400008
+    second: Control_Leg_R
+  - first:
+      4: 400010
+    second: Control_Leg_R_end
+  - first:
+      4: 400012
+    second: Control_SS
+  - first:
+      4: 400014
+    second: Control_SS_end
+  - first:
+      4: 400016
+    second: Hip_L
+  - first:
+      4: 400018
+    second: Hip_R
+  - first:
+      4: 400020
+    second: Leg_L
+  - first:
+      4: 400022
+    second: Leg_L_end
+  - first:
+      4: 400024
+    second: Leg_R
+  - first:
+      4: 400026
+    second: Leg_R_end
+  - first:
+      4: 400028
+    second: Pivot
+  - first:
+      4: 400030
+    second: Position
+  - first:
+      4: 400032
+    second: //RootNode
+  - first:
+      4: 400034
+    second: Q-Mon7
+  - first:
+      4: 400036
+    second: Q-Mon7_Objt
+  - first:
+      43: 4300000
+    second: Q-Mon7_Objt
+  - first:
+      74: 7400000
+    second: Q-Mon7|Q-Mon_7 Idle
+  - first:
+      74: 7400002
+    second: Q-Mon7|Q-Mon_7 Run
+  - first:
+      74: 7400004
+    second: Q-Mon7|Q-Mon_7 Stand
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Q-Mon7_Objt
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.01
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

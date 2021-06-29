@@ -209,7 +209,7 @@ namespace Game.Scripts.Level
                 var d = _zoomPos.position - target;
                 var a = Mathf.Atan2(d.z, d.x);
                 eater.transform.DOMove(target, 0.5f);
-                eater.transform.DOLocalRotate(new Vector3(-90, 180 + -140 + a * Mathf.Rad2Deg, 0), 0.5f);
+                eater.transform.DOLocalRotate(new Vector3(0, Random.Range(94,140), 0), 0.5f);
             }
 
             GameManager.Get().Camera.transform.DOMove(_zoomPos.position, 1f);

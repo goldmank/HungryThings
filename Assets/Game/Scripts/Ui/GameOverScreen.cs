@@ -15,6 +15,9 @@ namespace Game.Scripts.Ui
         [SerializeField] private GameObject _continue;
         [SerializeField] private Image _rarityLine;
         [SerializeField] private TextMeshProUGUI _rarityText;
+        
+        [SerializeField] private Transform[] _panels;
+        [SerializeField] private GameObject _confetiRain;
 
         private void Update()
         {
@@ -32,35 +35,45 @@ namespace Game.Scripts.Ui
         {
             gameObject.SetActive(true);
 
-            var currLevel = ModelManager.Get().LevelsStatus.CurrLevel;
-            var levelData = ModelManager.Get().Levels.Levels[currLevel];
-            var hiddenObject = ModelManager.Get().Foods.GetFood(levelData.Food);
-            _title.text = hiddenObject.Name + " Unlocked!";
+            var delay = 0.0f;
+            foreach (var panel in _panels)
+            {
+                panel.localScale = new Vector3(0, 1, 1);
+                panel.DOScale(new Vector3( 1, 1, 1), 0.3f).SetDelay(delay);
+                delay += 0.3f;
+            }
             
-            _continue.gameObject.SetActive(false);
+            _confetiRain.gameObject.SetActive(true);
             
-            _line.localScale = new Vector3(0, 1, 1);
-            Utils.SetAlpha(_title, 0);
-            
-            _line.DOScale(1, 0.3f).OnComplete(() => { _title.DOFade(1, 0.3f); });
-            
-            _rarityLine.transform.localScale = new Vector3(0, 1, 1);
-            _rarityLine.color = ModelManager.Get().Foods.RarityColor[(int) hiddenObject.Rarity];
-            Utils.SetAlpha(_rarityText, 0);
-            _rarityText.text = hiddenObject.Rarity.ToString();
-            
-            _rarityLine.transform.DOScale(1, 0.3f).SetDelay(0.15f).OnComplete(() => { 
-                _rarityText.DOFade(1, 0.2f).OnComplete(() =>
-                {
-                    ModelManager.Get().Tasker.Run(() =>
-                    {
-                        _continue.gameObject.SetActive(true);
-                    }, 0.3f);
-                }); 
-            });
-            
-            ModelManager.Get().Store.MarkItemAsPurchased("object_" + hiddenObject.Type);
-            ModelManager.Get().GlobalPref.ObjectsUnlockCount++;
+            // var currLevel = ModelManager.Get().LevelsStatus.CurrLevel;
+            // var levelData = ModelManager.Get().Levels.Levels[currLevel];
+            // var hiddenObject = ModelManager.Get().Foods.GetFood(levelData.Food);
+            // _title.text = hiddenObject.Name + " Unlocked!";
+            //
+            // _continue.gameObject.SetActive(false);
+            //
+            // _line.localScale = new Vector3(0, 1, 1);
+            // Utils.SetAlpha(_title, 0);
+            //
+            // _line.DOScale(1, 0.3f).OnComplete(() => { _title.DOFade(1, 0.3f); });
+            //
+            // _rarityLine.transform.localScale = new Vector3(0, 1, 1);
+            // _rarityLine.color = ModelManager.Get().Foods.RarityColor[(int) hiddenObject.Rarity];
+            // Utils.SetAlpha(_rarityText, 0);
+            // _rarityText.text = hiddenObject.Rarity.ToString();
+            //
+            // _rarityLine.transform.DOScale(1, 0.3f).SetDelay(0.15f).OnComplete(() => { 
+            //     _rarityText.DOFade(1, 0.2f).OnComplete(() =>
+            //     {
+            //         ModelManager.Get().Tasker.Run(() =>
+            //         {
+            //             _continue.gameObject.SetActive(true);
+            //         }, 0.3f);
+            //     }); 
+            // });
+            //
+            // ModelManager.Get().Store.MarkItemAsPurchased("object_" + hiddenObject.Type);
+            // ModelManager.Get().GlobalPref.ObjectsUnlockCount++;
         }
 
         public void OnContinue()

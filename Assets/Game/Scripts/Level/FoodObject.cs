@@ -136,10 +136,19 @@ namespace Game.Scripts
             _foodParts = new List<FoodPart>();
             _foodOnFloor = new HashSet<FoodPart>();
 
+            int coinInterval = 30;
+            int counter = 0;
+            
             var parts = _parts.transform.GetComponentsInChildren<FoodPart>();
             foreach (var foodPart in parts)
             {
-                foodPart.Init(0);//Random.Range(0,10));
+                int coins = 0;
+                if (++counter > coinInterval)
+                {
+                    counter = 0;
+                    coins = 1;
+                }
+                foodPart.Init(0, coins);//Random.Range(0,10));
                 foodPart.Removed += FoodPartOnRemoved;
                 foodPart.OnFloor += FoodOnFloor;
                 _foodParts.Add(foodPart);

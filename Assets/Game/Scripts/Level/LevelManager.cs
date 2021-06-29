@@ -200,7 +200,7 @@ namespace Game.Scripts.Level
                 
                 var target = Vector3.zero;
                 var currPos = eater.transform.position;
-                var r = Random.Range(-2.2f, 2.2f);
+                var r = Random.Range(-2.0f, 2.0f);
                 target.x += Mathf.Cos(posA) * r;
                 target.z += Mathf.Sin(posA) * r;
                 target.y = currPos.y;
@@ -235,6 +235,11 @@ namespace Game.Scripts.Level
                     eater.transform.DOJump(eater.transform.position, 0.6f, 4, 1.6f).SetDelay(Random.Range(0, 0.5f)).SetEase(Ease.Linear);
                 }
             }, 1.0f);
+            
+            ModelManager.Get().Tasker.Run(() =>
+            {
+                GameManager.Get().Ui.ShowGameOver();
+            }, 2.0f);
         }
 
         private void OnDestroy()

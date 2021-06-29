@@ -13,6 +13,8 @@ namespace Game.Scripts.Level
         // [SerializeField] private FixedJoint[] _joints;
 
         //public Rigidbody Body => _body;
+
+        private int _coins;
         
         public event Action<FoodPart> Removed;
         public event Action<FoodPart> OnFloor;
@@ -29,23 +31,25 @@ namespace Game.Scripts.Level
         }
 #endif
         
-        public void Init(float health)
+        public void Init(float health, int coins)
         {
             _health = health;
+            _coins = coins;
         }
 
-        public void Eat(float damage)
+        public int Eat(float damage)
         {
             _health -= damage;
             if (_health > 0)
             {
-                return;
+                return 0;
             }
             Removed?.Invoke(this);
             transform.DOScale(0, 0.2f).OnComplete(() =>
             {
                 Destroy(gameObject); 
             });
+            return _coins;
         }
 
         // private void OnCollisionEnter(Collision other)

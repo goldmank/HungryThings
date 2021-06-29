@@ -153,7 +153,7 @@ namespace Game.Scripts.Level
             {
                 //Debug.Log("ant collide food");
                 var foodPart = other.collider.GetComponent<FoodPart>();
-                foodPart.Eat(_power * Time.deltaTime);
+                int coins = foodPart.Eat(_power * Time.deltaTime);
                 
                 if (_lastDustTime <= 0 || Time.time - _lastDustTime > 0.6f)
                 {
@@ -161,10 +161,10 @@ namespace Game.Scripts.Level
                     ModelManager.Get().Vfx.Create(VfxType.Dust, transform.position, 2);
                 }
 
-                // if (Random.value > 0.8f)
-                // {
-                //     ModelManager.Get().Vfx.Create(VfxType.Coins, transform.position, 2);
-                // }
+                if (coins > 0)
+                {
+                    ModelManager.Get().Vfx.Create(VfxType.Coins, transform.position, 2);
+                }
                 return;
             }
         
